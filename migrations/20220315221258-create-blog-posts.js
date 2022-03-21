@@ -20,6 +20,7 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        // referência: https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html, sessão referential actions, bem como o esquenta do projeto.
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
