@@ -36,16 +36,15 @@ const Attributes = {
 };
 
 module.exports = (sequelize) => {
-  const blogPosts = sequelize.define('blogPosts', 
-    Attributes, {
-      underscored: true,
+  const BlogPost = sequelize.define('BlogPost', Attributes,
+  {
       timestamps: false,
-      tableName: 'blogPosts',
+      tableName: 'BlogPosts',
     });
 
-    blogPosts.associate = (models) => {
-      blogPosts.belongsTo(models.User, { foreingKey: 'userId', as: 'user' });
-    };
+  BlogPost.associate = (models) => {
+    BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+  };
 
-  return blogPosts;
+  return BlogPost;
 };
