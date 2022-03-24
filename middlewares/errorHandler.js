@@ -9,5 +9,6 @@ module.exports = (err, req, res, _next) => {
   };
 
   const status = statusByErrorCode[err.code] || 500;
+
   res.status(status).json({ message: err.details[0].message });
 };

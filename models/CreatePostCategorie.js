@@ -8,12 +8,12 @@ module.exports = (sequelize) => {
 
     PostCategory.associate = (models) => {
       models.Category.belongsToMany(models.blogPosts, { 
-        foreingKey: 'postId', otherKey: 'categoryId', through: PostCategory, as: 'categories' });
+        foreingKey: 'postId', otherKey: 'category_id', through: PostCategory, as: 'categories' });
     };
 
     PostCategory.associate = (models) => {
       models.BlogPost.belongsToMany(models.Category, { 
-        foreingKey: 'categoryId', otherKey: 'postId', through: PostCategory, as: 'posts' });
+        foreingKey: 'category_id', otherKey: 'postId', through: PostCategory, as: 'posts' });
     };
 
   return PostCategory;
