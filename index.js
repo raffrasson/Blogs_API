@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-// const { categoriesRouter } = require('./routers/categoriesRouter');
+const categoriesRouter = require('./routers/categoriesRouter');
 const loginRouter = require('./routers/loginRouter');
 // const { postRouter } = require('./routers/postRouter');
 const userRouter = require('./routers/userRouter');
@@ -25,4 +25,5 @@ app.get('/', (request, response) => {
 });
 app.use(loginRouter);
 app.use(userRouter);
+app.use(categoriesRouter);
 app.use(errorHandler);

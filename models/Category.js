@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
     Attributes, {
       underscored: true,
       timestamps: false,
-      tableName: 'categories',
+      tableName: 'Categories',
     });
     
   return Category;
