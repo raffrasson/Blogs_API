@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const PostsCategories = queryInterface.createTable('PostsCategories', {
@@ -8,11 +6,25 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model:'BlogPosts',
+          key: 'id'          
+        }
+
         
       },
       categorieId:{
         allowNull: false,
-        type: Sequelize.INTEGER,        
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+                onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model:'Categories',
+          key: 'id'
+        }     
       },
     });
   },
