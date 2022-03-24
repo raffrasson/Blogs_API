@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
 
     req.tokenData = decoded.data;
 
-    next();
+    return next();
   } catch (error) {
     if (error.name.includes('Token')) {
     return res.status(401).json({ message: 'Expired or invalid token' });
