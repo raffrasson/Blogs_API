@@ -38,6 +38,7 @@ const Attributes = {
 module.exports = (sequelize) => {
   const BlogPost = sequelize.define('BlogPost', Attributes,
   {
+    underscored: false,
       timestamps: false,
       tableName: 'BlogPosts',
     });

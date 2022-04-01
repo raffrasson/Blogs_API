@@ -3,9 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const categoriesRouter = require('./routers/categoriesRouter');
 const loginRouter = require('./routers/loginRouter');
-// const { postRouter } = require('./routers/postRouter');
 const userRouter = require('./routers/userRouter');
 const errorHandler = require('./middlewares/errorHandler');
+const postRouter = require('./routers/postRouter');
 
 // const userValidation = require('./middlewares/userValidation');
 
@@ -25,5 +25,6 @@ app.get('/', (request, response) => {
 });
 app.use(loginRouter);
 app.use(userRouter);
+app.use(postRouter);
 app.use(categoriesRouter);
 app.use(errorHandler);

@@ -1,21 +1,33 @@
+const { DataTypes } = require('sequelize');
+
+const Attributes = {
+  postId: {
+    type: DataTypes.INTEGER,
+    foreignKey: true,
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    foreignKey: true,
+  },
+};
+
 module.exports = (sequelize) => {
-  const PostCategory = sequelize.define('PostCategory', 
-    {}, {
-      underscored: true,
+  const PostsCategory = sequelize.define('PostsCategory', Attributes,
+  { timestamps: false, tableName: 'PostsCategories' }, {
+      underscored: false,
       timestamps: false,
-      tableName: 'postCategories',
-      categoryId: 'category_id',
+      tableName: 'PostsCategories',
     });
 
-    PostCategory.associate = (models) => {
-      models.Category.belongsToMany(models.blogPosts, { 
-        foreingKey: 'postId', otherKey: 'category_id', through: PostCategory, as: 'Categories' });
+    PostsCategory.associate = (models) => {
+      models.Category.belongsToMany(models.blogPost, { 
+        foreingKey: 'postId', otherKey: 'categoryId', through: PostsCategory, as: 'blogPosts' });
     };
 
-    PostCategory.associate = (models) => {
+    PostsCategory.associate = (models) => {
       models.BlogPost.belongsToMany(models.Category, { 
-        foreingKey: 'category_id', otherKey: 'postId', through: PostCategory, as: 'Posts' });
+        foreingKey: 'categoryId', otherKey: 'postId', through: PostsCategory, as: 'categories' });
     };
 
-  return PostCategory;
+  return PostsCategory;
 };

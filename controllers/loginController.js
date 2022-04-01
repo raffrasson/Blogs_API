@@ -7,7 +7,7 @@ const login = async (req, res) => {
 
   if (!user) return res.status(400).json({ message: 'Invalid fields' });
 
-  const token = jwtGen({ email, password });
+  const token = jwtGen({ id: user.dataValues.id, email, password });
   return res.status(200).json({ token });
 };
 

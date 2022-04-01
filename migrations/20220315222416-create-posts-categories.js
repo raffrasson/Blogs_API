@@ -15,11 +15,11 @@ module.exports = {
 
         
       },
-      categorieId:{
+      categoryId:{
         allowNull: false,
         type: Sequelize.INTEGER,
         primaryKey: true,
-                onUpdate: 'CASCADE',
+        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
           model:'Categories',

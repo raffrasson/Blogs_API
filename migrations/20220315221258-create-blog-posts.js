@@ -2,42 +2,42 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const BlogPosts = queryInterface.createTable('BlogPosts', {
+    await queryInterface.createTable('BlogPosts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       title: {
+        type: Sequelize.STRING,
+      },
+      content: {
         allowNull: false,
-        type: Sequelize.STRING
-      }, 
-      content: {        
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       userId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
-        // referência: https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html, sessão referential actions, bem como o esquenta do projeto.
+        references: {
+          model: 'Users', // na verdade essa é a table Users, não o model User.js
+          key: 'id',
+        },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        references: {
-          model: "Users", key: "id"
-        }  
       },
       published: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updated: {
         allowNull: false,
-        type: Sequelize.DATE}
-    })
+        type: Sequelize.DATE,
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+    });
   },
-
-  down: async (queryInterface, Sequelize) => {
-     queryInterface.dropTable('BlogPosts');
-  }
+  down: async (queryInterface, _Sequelize) => {
+    await queryInterface.dropTable('BlogPosts');
+  },
 };

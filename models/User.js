@@ -29,9 +29,10 @@ const Attributes = {
 module.exports = (sequelize) => {
   const User = sequelize.define('User', 
     Attributes, {
+      underscored: false,
       timestamps: false,
       tableName: 'Users',
-      displayName: 'display_name', // o uderscore não estava funcionando, usei a solução encontrada aqui parar trocar o displayName: https://github.com/sequelize/sequelize/issues/10857
+      // displayName: 'display_name', // o uderscore não estava funcionando, usei a solução encontrada aqui parar trocar o displayName: https://github.com/sequelize/sequelize/issues/10857
     });
 
     User.associate = (models) => {
