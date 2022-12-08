@@ -1,11 +1,12 @@
 const express = require('express');
-const { create, getAll } = require('../controllers/postController');  
+const { create, getAll, getById } = require('../controllers/postController');  
 const { postValidation, auth } = require('../middlewares');
 
 const postRouter = express.Router();
 
 postRouter.post('/post', auth, postValidation, create);
-postRouter.get('/post', auth, postValidation, getAll);
-// postRouter.get('/post/:id', auth, postController.getById);
+postRouter.get('/post', getAll);
+postRouter.get('/post/:id', auth, getById);
+postRouter.put('/post/:id', auth, getById);
 
 module.exports = postRouter;
